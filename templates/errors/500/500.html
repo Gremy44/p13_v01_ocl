@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Method Not Allowed - 405 Error</title>
+    <title>Method Not Allowed - 500 Error</title>
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     <style>
         body {
@@ -26,9 +26,9 @@
 </head>
 <body>
     <div class="container error-container">
-        <img src="{% static 'assets/img/405.png' %}" alt="Error 405" class="error-image">
+        <img src="{% static 'assets/img/500.png' %}" alt="Error 500" class="error-image">
         <div class="error-text">
-            <p>Oops! The requested method is not allowed for this resource.</p>
+            <p>Oops! The Internal Server Error</p>
             <p>Return to <a href="/">homepage</a></p>
         </div>
     </div>

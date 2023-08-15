@@ -75,3 +75,8 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+### Journalisation avec Sentry
+
+Pour connecter Sentry à l'application veuillez ajouter dans votre fichier .env une nouvelle variable d'environnement nommée:
+ - `DSN_SENTRY = "Votre-Clef-Dsn"` fournie par Sentry au moment de la création du projet sur le site 

@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
             database_operations=[
                 migrations.AlterModelTable(
                     name="Address",
-                    table="lettings_adress",
+                    table="lettings_address",
                 ),
                 migrations.AlterModelTable(
                     name="Letting",

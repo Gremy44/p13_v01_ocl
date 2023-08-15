@@ -27,7 +27,8 @@ class Migration(migrations.Migration):
                         ('country_iso_code', models.CharField(max_length=3, validators=[django.core.validators.MinLengthValidator(3)])),
                     ],
                     options={
-                        'db_table': 'lettings_adress',
+                        'db_table': 'lettings_address',
+                        'verbose_name_plural': 'Addresses',
                     },
                 ),
             ],

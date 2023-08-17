@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Letting
+from oc_lettings_site.journalisation import capture_sentry_message
 
 
+@capture_sentry_message
 def index(request):
     """
     Renders the lettings index page.
@@ -17,6 +19,7 @@ def index(request):
     return render(request, "lettings/index.html", context)
 
 
+@capture_sentry_message
 def letting(request, letting_id):
     """
     Renders the details page for a specific letting.

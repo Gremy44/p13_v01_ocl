@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse
+from .journalisation import capture_sentry_message
 from sentry_sdk import capture_message
 from datetime import datetime
 
 
+@capture_sentry_message
 def index(request):
     """
     Renders the index page.
@@ -27,10 +29,9 @@ def error_404_view(request, exception=None):
     Returns:
     - Rendered HTML response for the custom 404 page.
     """
-    
-    # capture_message(f"Error 404 for {request.user} at {datetime.now()}", level="error")
-    
-    return render(request, "errors/404/404.html", status=404)
+    ip_user = request.META.get('REMOTE_ADDR')
+    capture_message(f"Error 404 for {ip_user} at {datetime.now()}", level="warning")
+    return render(request, "errors/404.html", status=404)
 
 
 def error_500_view(request, exception=None):
@@ -44,16 +45,20 @@ def error_500_view(request, exception=None):
     Returns:
     - Rendered HTML response for the custom 500 page.
     """
-    return render(request, "errors/500/500.html", status=500)
+    ip_user = request.META.get('REMOTE_ADDR')
+    capture_message(f"Error 500 for {ip_user} at {datetime.now()}", level="error")
+    return render(request, "errors/500.html", status=500)
 
-
-from django.http import HttpResponse
 
 def error_view(request):
-    try:
-        # Simuler une erreur interne en levant une exception.
-        raise Exception("Simulated Internal Server Error")
-    except Exception as e:
-        # Si une exception est générée, renvoyer une réponse avec le code de statut 500.
-        return HttpResponse("Internal Server Error", status=500)
-    return HttpResponse("This view should not be reached.")
+    """
+    This view simulates an internal server error by raising
+    an exception and returns an appropriate response.
+
+    Args:
+        request (HttpRequest): The incoming HTTP request object.
+
+    Returns:
+        HttpResponse: A response indicating an internal server error with a status code of 500.
+    """
+    return HttpResponse('Simulate internal server error', status=500)

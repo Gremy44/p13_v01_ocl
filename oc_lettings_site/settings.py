@@ -125,7 +125,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static', ]
 # Sentry configuration
 
 sentry_sdk.init(
-    dsn=os.getenv('SENTRY_DSN'),
+    dsn=os.getenv("DSN_SENTRY"),
     integrations=[DjangoIntegration()],
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.

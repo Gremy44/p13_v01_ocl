@@ -1,5 +1,5 @@
 import pytest
-from ..models import Letting, Address
+from .models import Letting, Address
 
 
 @pytest.fixture

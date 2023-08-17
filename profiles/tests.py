@@ -1,7 +1,7 @@
 import pytest
 import uuid
 from django.contrib.auth.models import User
-from ..models import Profile
+from .models import Profile
 
 
 @pytest.fixture(scope="function")
@@ -43,8 +43,6 @@ def test_profiles_returns_200(client, sample_profile):
     Returns:
     None
     """
-    profile_test = Profile.objects.first()
-
     # Perform GET request to retrieve profile list
     response_1 = client.get("/profiles/")
     assert response_1.status_code == 200

@@ -7,7 +7,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('lettings/', include('lettings.urls')),
     path('profiles/', include('profiles.urls')),
-    path('error_500/', error_view, name='error_500'),
+    path('error500/', error_view, name='error_500'),
     path('admin/', admin.site.urls),
 ]
 

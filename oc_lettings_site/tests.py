@@ -1,7 +1,3 @@
-import pytest
-from django.test import Client
-
-
 def test_dummy():
     """
     A dummy test to ensure the test setup is working.
@@ -51,11 +47,17 @@ def test_return_404_for_invalid_request(client):
     assert response.status_code == 404
 
 
+# @pytest.mark.xfail(raises=Exception)
 def test_internal_server_error(client):
-    
-    # Ici, vous pouvez appeler une vue qui provoque intentionnellement une erreur,
-    # par exemple, en appelant une fonction inexistante ou en forçant une erreur.
-    response = client.get('/error_500/')
+    """
+    Test internal server error on a URL that raises an exception.
 
-    # Assurez-vous que le code de statut de la réponse est 500.
+    Args:
+    client: Django test client.
+
+    Returns:
+    None
+    """
+    # raise Exception("500 error test")
+    response = client.get('/error500/')
     assert response.status_code == 500

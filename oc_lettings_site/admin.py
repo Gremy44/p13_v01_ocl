@@ -25,5 +25,6 @@ def capture_admin_login(sender, request, user, **kwargs):
         tags={"user_logged": user.username},
     )
 
+
 # Connect the signal to the function
 user_logged_in.connect(capture_admin_login)

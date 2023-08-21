@@ -3,9 +3,6 @@ version 2.1
 # on créé l'orbs
 # packages réutilisables de configuration et d'automatisation prédéfinis
 
-orbs:
-  python: circleci/python@1.5.0
-
 # on créé les jobs qui sont les tâches à effectuer
 jobs:
 

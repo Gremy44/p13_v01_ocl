@@ -1,47 +1,72 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
-version: 2.1
+version 2.1
 
-# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
-# See: https://circleci.com/docs/orb-intro/
+# on créé l'orbs
+# packages réutilisables de configuration et d'automatisation prédéfinis
+
 orbs:
-  # The python orb contains a set of prepackaged CircleCI configuration you can use repeatedly in your configuration files
-  # Orb commands and jobs help you with common scripting around a language/tool
-  # so you dont have to copy and paste it everywhere.
-  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.5.0
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
+# on créé les jobs qui sont les tâches à effectuer
 jobs:
-  build-and-test: # This is the name of the job, feel free to change it to better match what you're trying to do!
-    # These next lines defines a Docker executors: https://circleci.com/docs/executor-types/
-    # You can specify an image from Dockerhub or use one of the convenience images from CircleCI's Developer Hub
-    # A list of available CircleCI Docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
-    # The executor is the environment in which the steps below will be executed - below will use a python 3.10.2 container
-    # Change the version below to your required version of python
+
+  # le premier, quand je push sur develop on lance les tests
+
+  run-test:
     docker:
+      # je prend l'image de python 3.10.2 pour faire mes tests circle ci
+      # environnement de tests tout ca tout ca 
       - image: cimg/python:3.10.2
-    # Checkout the code as the first step. This is a dedicated CircleCI step.
-    # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
-    # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
-    # Then run your tests!
-    # CircleCI will report the results back to your VCS provider.
+
     steps:
+      # duplication du repo
       - checkout
+      # installation des packages
       - python/install-packages:
           pkg-manager: pip
-          # app-dir: ~/project/package-directory/  # If your requirements.txt isn't in the root directory.
-          pip-dependency-file: requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
+          pip-dependency-file: requirements.txt
+      # lancement des tests
       - run:
           name: Run tests
-          # This assumes pytest is installed via the install-package step above
           command: pytest
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
+  # le deuxième, quand je pull request sur main on lance le déploiement
+  build_and_push_docker:
+    docker:
+      - image: python:latest  # !!!Assurez-vous d'utiliser la version de Docker appropriée
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true  # Cachez les couches Docker pour accélérer la construction si nécessaire
+      - run:
+          name: Build and Push Docker Image
+          command: |
+            # Construisez votre image Docker ici
+            docker build -t ocl-docker .
+            # Poussez l'image vers Docker Hub (ou un autre registre)
+            docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+            docker tag ocl-docker $DOCKER_HUB_USERNAME/ocl-docker:latest
+            docker push $DOCKER_HUB_USERNAME/ocl-docker:latest
+
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  version: 2
+  run_tests_and_build_docker:
+
     jobs:
-      - build-and-test
+      - run_tests:
+          context: my-context  # Remplacez par le contexte approprié pour vos secrets
+        filters:
+          branches:
+            only:
+              - develop  # Exécutez ce job lorsque vous poussez sur la branche develop
+
+      - build_and_push_docker:
+          context: my-context  # Remplacez par le contexte approprié pour vos secrets
+        filters:
+          branches:
+            only:
+              - main  # Exécutez ce job lorsque vous créez une pull request de develop vers main
+
+    environment:
+      MY_SENSITIVE_VARIABLE:
+        value: $DOCKER_HUB_PASSWORD
+        masked: true

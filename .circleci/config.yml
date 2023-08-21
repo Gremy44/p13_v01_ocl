@@ -16,33 +16,9 @@ jobs:
           name: Run tests
           command: pytest
 
-  build_and_push_docker:
-    docker:
-      - image: docker:20.x  # Assurez-vous d'utiliser la version de Docker appropriée
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true  # Cachez les couches Docker pour accélérer la construction si nécessaire
-      - run:
-          name: Build and Push Docker Image
-          command: |
-            # Construisez votre image Docker ici
-            docker build -t ocl-docker .
-            # Poussez l'image vers Docker Hub (ou un autre registre)
-            docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-            docker tag ocl-docker $DOCKER_HUB_USERNAME/ocl-docker:latest
-            docker push $DOCKER_HUB_USERNAME/ocl-docker:latest
 
 workflows:
   version: 2
   run_tests_and_build_docker:
     jobs:
-      - when:
-          condition:
-            equal: [ develop, << pipeline.git.branch >> ]
-            - run-test
-
-      - when:
-        condition:
-          equal: [ main, << pipeline.git.branch >> ]
-          - build_and_push_docker 
+      - run-test

@@ -1,35 +1,24 @@
-version 2.1
+version: 2.1
 
-# on créé l'orbs
-# packages réutilisables de configuration et d'automatisation prédéfinis
+orbs:
+  python: circleci/python@1.5.0
 
-# on créé les jobs qui sont les tâches à effectuer
 jobs:
-
-  # le premier, quand je push sur develop on lance les tests
-
   run-test:
     docker:
-      # je prend l'image de python 3.10.2 pour faire mes tests circle ci
-      # environnement de tests tout ca tout ca 
       - image: cimg/python:3.10.2
-
     steps:
-      # duplication du repo
       - checkout
-      # installation des packages
       - python/install-packages:
           pkg-manager: pip
           pip-dependency-file: requirements.txt
-      # lancement des tests
       - run:
           name: Run tests
           command: pytest
 
-  # le deuxième, quand je pull request sur main on lance le déploiement
   build_and_push_docker:
     docker:
-      - image: python:latest  # !!!Assurez-vous d'utiliser la version de Docker appropriée
+      - image: docker:20.x  # Assurez-vous d'utiliser la version de Docker appropriée
     steps:
       - checkout
       - setup_remote_docker:
@@ -47,9 +36,8 @@ jobs:
 workflows:
   version: 2
   run_tests_and_build_docker:
-
     jobs:
-      - run_tests:
+      - run-test:
           context: my-context  # Remplacez par le contexte approprié pour vos secrets
         filters:
           branches:
@@ -63,7 +51,3 @@ workflows:
             only:
               - main  # Exécutez ce job lorsque vous créez une pull request de develop vers main
 
-    environment:
-      MY_SENSITIVE_VARIABLE:
-        value: $DOCKER_HUB_PASSWORD
-        masked: true

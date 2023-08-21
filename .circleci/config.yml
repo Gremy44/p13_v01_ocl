@@ -37,16 +37,12 @@ workflows:
   version: 2
   run_tests_and_build_docker:
     jobs:
-      - run-test:
-          context: my-context  # Remplacez par le contexte approprié pour vos secrets
-        filters:
-          branches:
-            only:
-              - develop  # Exécutez ce job lorsque vous poussez sur la branche develop
+      - when:
+          condition:
+            equal: [ develop, << pipeline.git.branch >> ]
+            - run-test
 
-      - build_and_push_docker:
-          context: my-context  # Remplacez par le contexte approprié pour vos secrets
-        filters:
-          branches:
-            only:
-              - main  # Exécutez ce job lorsque vous créez une pull request de develop vers main
+      - when:
+        condition:
+          equal: [ main, << pipeline.git.branch >> ]
+          - build_and_push_docker 

@@ -50,4 +50,3 @@ workflows:
           branches:
             only:
               - main  # Exécutez ce job lorsque vous créez une pull request de develop vers main
-

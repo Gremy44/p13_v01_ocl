@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from oc_lettings_site.journalisation import capture_sentry_message
+from oc_lettings_site.logger import capture_sentry_message
 from .models import Profile
 
 

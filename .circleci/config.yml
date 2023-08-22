@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@1.5.0
+  docker: cicleci/docker@2.1.3
+  python: circleci/python@2.0.3
 
 jobs:
   run-test:
@@ -16,9 +17,24 @@ jobs:
           name: Run tests
           command: pytest
 
+  build-deploy-docker:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker image
+          command: docker build -t --tag ocl-docker:latest .
 
 workflows:
   version: 2
   run_tests_and_build_docker:
     jobs:
       - run-test
+      - build-deploy-docker:
+          filters:
+            branches:
+              only: main
+          requires:
+            - run-test

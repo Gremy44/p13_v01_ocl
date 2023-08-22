@@ -3,6 +3,7 @@ from functools import wraps
 from django.shortcuts import render
 import sentry_sdk
 from django.urls import resolve
+import logging
 
 
 def capture_sentry_message(view_func):
@@ -36,7 +37,7 @@ def capture_sentry_message(view_func):
 
             with sentry_sdk.push_scope() as scope:
                 scope.set_tag("user_navigation", "path")
-                sentry_sdk.capture_message(
+                logging.info(
                     f"Page consultée {resolved_url_name} par l'utilisateur "
                     f"{ip_user} le {datetime.today().strftime('%Y-%m-%d')} à "
                     f"{datetime.now().strftime('%H:%M:%S')}",
@@ -46,6 +47,6 @@ def capture_sentry_message(view_func):
             return response
         except Exception as e:
             sentry_sdk.capture_exception(e)
-            return render(request, "error_template.html")
+            return render(request, "error500.html")
 
     return wrapper

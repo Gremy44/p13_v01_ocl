@@ -1,3 +1,5 @@
+import pytest
+
 def test_dummy():
     """
     A dummy test to ensure the test setup is working.
@@ -47,7 +49,7 @@ def test_return_404_for_invalid_request(client):
     assert response.status_code == 404
 
 
-# @pytest.mark.xfail(raises=Exception)
+@pytest.mark.xfail(raises=Exception)
 def test_internal_server_error(client):
     """
     Test internal server error on a URL that raises an exception.

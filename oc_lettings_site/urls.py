@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import index, error_view
+from .views import index, trigger_error
 
 urlpatterns = [
     path('', index, name='index'),
     path('lettings/', include('lettings.urls')),
     path('profiles/', include('profiles.urls')),
-    path('error500/', error_view, name='error_500'),
+    path('error500/', trigger_error),
     path('admin/', admin.site.urls),
 ]
 

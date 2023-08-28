@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Push docker image
           command:
-            docker tag $IMAGE_NAME:latest gremy44/$IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:latest gremy44/$IMAGE_NAME:latest |
             docker push gremy44/$IMAGE_NAME:latest
       
 

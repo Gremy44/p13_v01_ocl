@@ -41,6 +41,6 @@ workflows:
       - build-deploy-docker:
           filters:
             branches:
-              only: main
+              only: develop
           requires:
             - run-test

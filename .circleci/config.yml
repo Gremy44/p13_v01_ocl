@@ -25,16 +25,22 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker image
-          command: docker build -t --tag ocl-docker:latest .
+          command:
+            echo “$DOCKERHUB_PASSWORD” | docker login -u “$DOCKERHUB_USERNAME” — password-stdin 
+            docker build -t $IMAGE_NAME .
+            docker push $IMAGE_NAME:latest 
 
 workflows:
   version: 2
   run_tests_and_build_docker:
     jobs:
       - run-test
+          filter:
+            branches:
+              only: develop
       - build-deploy-docker:
           filters:
             branches:
-              only: master
+              only: main
           requires:
             - run-test

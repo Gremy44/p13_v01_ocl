@@ -1,31 +1,34 @@
-FROM python:latest
+# base image  
+FROM python:3.8   
+# setup environment variable  
+ENV DockerHOME=/home/app 
+#/webapp
 
-WORKDIR /app
 
-# set environnement variables
+# set work directory
+RUN mkdir -p $DockerHOME
+
+# where your code lives
+WORKDIR $DockerHOME
+
+ARG DJANGO_SECRET_KEY
+ARG DEBUG
+ARG DSN_SENTRY
+# set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ARG DJANGO_SECRET_KEY
-ARG DSN_SENTRY
-ARG DEBUG
-
-ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
-ENV DSN_SENTRY=$DSN_SENTRY
-ENV DEBUG=$DEBUG
-
 # install dependencies
-RUN pip install --upgrade pip 
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip
 
 # copy project
-COPY . .
+COPY . $DockerHOME
 
-RUN python manage.py migrate
+# install dependencies
+RUN pip install -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
+# port where the Django app runs  
+EXPOSE 8000  
 
-EXPOSE 8000
-
+# start server  
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

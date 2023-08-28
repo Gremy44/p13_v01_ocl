@@ -1,6 +1,6 @@
 # Exclure les fichiers de configuration locaux
 .env
-*.sqlite3
+# *.sqlite3
 
 # Exclure les fichiers de logs
 *.log

@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Build docker image
           command:
-            docker build -t $IMAGE_NAME:latest .
+            docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
       - run:
           name: Connect to Docker Hub
           command:
@@ -34,8 +34,8 @@ jobs:
       - run:
           name: Push docker image
           command:
-            docker tag $IMAGE_NAME:latest gremy44/$IMAGE_NAME:latest |
-            docker push gremy44/$IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:$CIRCLE_SHA1 gremy44/$IMAGE_NAME:$CIRCLE_SHA1 |
+            docker push gremy44/$IMAGE_NAME:$CIRCLE_SHA1
       
 
 workflows:

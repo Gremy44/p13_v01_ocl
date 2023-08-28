@@ -2,8 +2,6 @@
 FROM python:3.8   
 # setup environment variable  
 ENV DockerHOME=/home/app 
-#/webapp
-
 
 # set work directory
 RUN mkdir -p $DockerHOME

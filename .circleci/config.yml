@@ -35,11 +35,11 @@ workflows:
   run_tests_and_build_docker:
     jobs:
       - run-test
-          filters:
+          filter:
             branches:
               only: develop
       - build-deploy-docker:
-          filters:
+          filter:
             branches:
               only: main
           requires:

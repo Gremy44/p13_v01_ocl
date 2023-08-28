@@ -27,7 +27,7 @@ jobs:
           name: Build docker image
           command:
             echo “$DOCKER_HUB_PASSWORD” | docker login -u “$DOCKER_HUB_USERNAME” — password-stdin 
-            docker build -tag $IMAGE_NAME:latest .
+            docker build --tag $IMAGE_NAME:latest .
             docker push  
 
 workflows:

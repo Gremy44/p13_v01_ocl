@@ -30,9 +30,9 @@ jobs:
       - run:
           name: Push docker image
           command:
-            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD"
-            docker push "$IMAGE_NAME":latest
-          
+            echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
+            docker push "$IMAGE_NAME:latest"
+      
 
 workflows:
   version: 2

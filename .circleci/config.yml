@@ -17,7 +17,7 @@ jobs:
           name: Run tests
           command: pytest
 
-  build-deploy-docker:
+  build-push-docker:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -42,13 +42,10 @@ workflows:
   version: 2
   run_tests_and_build_docker:
     jobs:
-      - run-test:
+      - run-test
+      - build-push-docker:
           filters:
             branches:
-              only: develop
-      - build-deploy-docker:
-          filters:
-            branches:
-              only: develop
+              only: main
           requires:
             - run-test

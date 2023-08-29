@@ -1,0 +1,36 @@
+# Exclure les fichiers de configuration locaux
+.env
+# *.sqlite3
+
+# Exclure les fichiers de logs
+*.log
+
+# Exclure les fichiers temporaires
+*.tmp
+
+# Exclure les répertoires de build et de dépendances
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+node_modules/
+bower_components/
+
+# Exclure les fichiers de cache
+.cache/
+.cached/
+
+# Exclure les fichiers et répertoires de sauvegarde
+*.bak
+*.swp
+*.swo
+
+# Exclure les fichiers de compilation
+*.pyc
+
+# Exclure les fichiers de gestion de projet
+.idea/
+.vscode/
+
+.circleci/
+.pytest_cache/

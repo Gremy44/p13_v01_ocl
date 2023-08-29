@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method Not Allowed - 500 Error</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+        .error-container {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .error-image {
+            max-width: 300px;
+        }
+        .error-text {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container error-container">
+        <img src="{% static 'assets/img/500.png' %}" alt="Error 500" class="error-image">
+        <div class="error-text">
+            <p>Oops! The Internal Server Error</p>
+            <p>Return to <a href="/">homepage</a></p>
+        </div>
+    </div>
+</body>
+</html>

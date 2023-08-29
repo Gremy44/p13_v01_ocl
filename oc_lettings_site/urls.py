@@ -1,13 +1,15 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from . import views
+from .views import index, trigger_error
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('lettings/', views.lettings_index, name='lettings_index'),
-    path('lettings/<int:letting_id>/', views.letting, name='letting'),
-    path('profiles/', views.profiles_index, name='profiles_index'),
-    path('profiles/<str:username>/', views.profile, name='profile'),
+    path('', index, name='index'),
+    path('lettings/', include('lettings.urls')),
+    path('profiles/', include('profiles.urls')),
+    path('error500/', trigger_error),
     path('admin/', admin.site.urls),
 ]
+
+handler404 = 'oc_lettings_site.views.error_404_view'
+handler500 = 'oc_lettings_site.views.error_500_view'

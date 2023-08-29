@@ -1,41 +1,70 @@
-from django.shortcuts import render
-from .models import Letting, Profile
+from django.shortcuts import render, HttpResponse
+from .logger import capture_sentry_message
+from sentry_sdk import capture_message
+from datetime import datetime
 
-# Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie quam lobortis leo consectetur ullamcorper non id est. Praesent dictum, nulla eget feugiat sagittis, sem mi convallis eros,
-# vitae dapibus nisi lorem dapibus sem. Maecenas pharetra purus ipsum, eget consequat ipsum lobortis quis. Phasellus eleifend ex auctor venenatis tempus.
-# Aliquam vitae erat ac orci placerat luctus. Nullam elementum urna nisi, pellentesque iaculis enim cursus in. Praesent volutpat porttitor magna, non finibus neque cursus id.
+
+@capture_sentry_message
 def index(request):
-    return render(request, 'index.html')
+    """
+    Renders the index page.
 
-# Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit. Sed non placerat massa. Integer est nunc, pulvinar a
-# tempor et, bibendum id arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras eget scelerisque
-def lettings_index(request):
-    lettings_list = Letting.objects.all()
-    context = {'lettings_list': lettings_list}
-    return render(request, 'lettings_index.html', context)
+    Parameters:
+    - request: The HTTP request object.
 
-#Cras ultricies dignissim purus, vitae hendrerit ex varius non. In accumsan porta nisl id eleifend. Praesent dignissim, odio eu consequat pretium, purus urna vulputate arcu, vitae efficitur
-#  lacus justo nec purus. Aenean finibus faucibus lectus at porta. Maecenas auctor, est ut luctus congue, dui enim mattis enim, ac condimentum velit libero in magna. Suspendisse potenti. In tempus a nisi sed laoreet.
-# Suspendisse porta dui eget sem accumsan interdum. Ut quis urna pellentesque justo mattis ullamcorper ac non tellus. In tristique mauris eu velit fermentum, tempus pharetra est luctus. Vivamus consequat aliquam libero, eget bibendum lorem. Sed non dolor risus. Mauris condimentum auctor elementum. Donec quis nisi ligula. Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
-def letting(request, letting_id):
-    letting = Letting.objects.get(id=letting_id)
-    context = {
-        'title': letting.title,
-        'address': letting.address,
-    }
-    return render(request, 'letting.html', context)
+    Returns:
+    - Rendered HTML response for the index page.
+    """
+    return render(request, "index.html")
 
-# Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed consequat libero pulvinar eget. Fusc
-# faucibus, urna quis auctor pharetra, massa dolor cursus neque, quis dictum lacus d
-def profiles_index(request):
-    profiles_list = Profile.objects.all()
-    context = {'profiles_list': profiles_list}
-    return render(request, 'profiles_index.html', context)
 
-# Aliquam sed metus eget nisi tincidunt ornare accumsan eget lac
-# laoreet neque quis, pellentesque dui. Nullam facilisis pharetra vulputate. Sed tincidunt, dolor id facilisis fringilla, eros leo tristique lacus,
-# it. Nam aliquam dignissim congue. Pellentesque habitant morbi tristique senectus et netus et males
-def profile(request, username):
-    profile = Profile.objects.get(user__username=username)
-    context = {'profile': profile}
-    return render(request, 'profile.html', context)
+def error_404_view(request, exception=None):
+    """
+    Renders the custom 404 page, page not found.
+
+    Parameters:
+    - request: The HTTP request object.
+    - exception: The exception that triggered the 404 error.
+
+    Returns:
+    - Rendered HTML response for the custom 404 page.
+    """
+    ip_user = request.META.get('REMOTE_ADDR')
+    capture_message(f"Error 404 for {ip_user} at {datetime.now()}", level="warning")
+    return render(request, "errors/404.html", status=404)
+
+
+def error_500_view(request, exception=None):
+    """
+    Renders the custom 500 page, error server.
+
+    Parameters:
+    - request: The HTTP request object.
+    - exception: The exception that triggered the 500 error.
+
+    Returns:
+    - Rendered HTML response for the custom 500 page.
+    """
+    ip_user = request.META.get('REMOTE_ADDR')
+    capture_message(f"Error 500 for {ip_user} at {datetime.now()}", level="error")
+    return render(request, "errors/500.html", status=500)
+
+
+def error_view(request):
+    """
+    This view simulates an internal server error by raising
+    an exception and returns an appropriate response.
+
+    Args:
+        request (HttpRequest): The incoming HTTP request object.
+
+    Returns:
+        HttpResponse: A response indicating an internal server error with a status code of 500.
+    """
+    return HttpResponse('Simulate internal server error', status=500)
+
+def trigger_error(request):
+    """
+    test error 500
+    """
+    division_by_zero = 1 / 0

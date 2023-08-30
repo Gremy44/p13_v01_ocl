@@ -36,18 +36,6 @@ jobs:
           command:
             docker tag $IMAGE_NAME:$CIRCLE_SHA1 gremy44/$IMAGE_NAME:$CIRCLE_SHA1 |
             docker push gremy44/$IMAGE_NAME:$CIRCLE_SHA1
-  
-  deploie-on-python-anywhere:
-    docker:
-      - image: cimg/python:3.10.2
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: pip install -r requirements.txt
-      - run:
-          name: Deploy to Python Anywhere
-          command: git push pythonanywhere master
 
 workflows:
   version: 2
@@ -60,9 +48,3 @@ workflows:
               only: main
           requires:
             - run-test
-      - deploie-on-python-anywhere:
-          filters:
-            branches:
-              only: main
-          requires:
-            - build-push-docker

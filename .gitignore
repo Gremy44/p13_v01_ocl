@@ -162,3 +162,7 @@ cython_debug/
 .vscode
 vscode
 /make_user_report.py
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -34,3 +34,7 @@ bower_components/
 
 .circleci/
 .pytest_cache/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore

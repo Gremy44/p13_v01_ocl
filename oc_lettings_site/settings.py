@@ -27,6 +27,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # DEBUG = env("DEBUG")
 DEBUG = False
 
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://git.heroku.com/ocl-gremy.git']
 ALLOWED_HOSTS = ['*']
 
 APPEND_SLASH = True
@@ -123,10 +124,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [BASE_DIR / 'static', ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Sentry configuration
 

@@ -1,10 +1,11 @@
 # base image  
-FROM python:3.8   
+FROM python:3.10  
 # setup environment variable  
 ENV DockerHOME=/home/app 
 
 # set work directory
 RUN mkdir -p $DockerHOME
+RUN mkdir -p $DockerHOME/web/staticfiles
 
 # where your code lives
 WORKDIR $DockerHOME
@@ -12,6 +13,7 @@ WORKDIR $DockerHOME
 ARG DJANGO_SECRET_KEY
 ARG DEBUG
 ARG DSN_SENTRY
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -24,9 +26,9 @@ COPY . $DockerHOME
 
 # install dependencies
 RUN pip install -r requirements.txt
-
-# port where the Django app runs  
-EXPOSE 8000  
+# RUN python manage.py collectstatic --noinput
 
 # start server  
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD python manage.py runserver 0.0.0.0:$PORT
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:$PORT"]
+# CMD gunicorn oc_lettings_site.wsgi:application --bind 0.0.0.0:$PORT

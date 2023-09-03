@@ -40,7 +40,7 @@ jobs:
 
   deploye-from-dockerhub-to-heroku:
     docker:
-      - image: $IMAGE_NAME:$CIRCLE_SHA1
+      - image: gremy44/$IMAGE_NAME:$CIRCLE_SHA1
     steps:
       - checkout
       - run:

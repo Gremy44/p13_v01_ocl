@@ -38,23 +38,33 @@ jobs:
             docker tag $IMAGE_NAME:$CIRCLE_SHA1 gremy44/$IMAGE_NAME:$CIRCLE_SHA1 |
             docker push gremy44/$IMAGE_NAME:$CIRCLE_SHA1
 
-  deploye-on-heroku:
+  deploye-from-dockerhub-to-heroku:
     docker:
-      - image: cimg/base:stable
+      - image: $IMAGE_NAME:$CIRCLE_SHA1
     steps:
       - checkout
-      - setup_remote_docker
-      - heroku/install
       - run:
-          name: Heroku
+          name: Deploy Main to Heroku
           command: |
-            echo $DSN_SENTRY
-            curl https://cli-assets.heroku.com/install.sh | sh
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY -a $HEROKU_APP_NAME
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DSN_SENTRY=$DSN_SENTRY -a $HEROKU_APP_NAME
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+
+  # deploye-on-heroku:
+    # docker:
+      # - image: cimg/base:stable
+    # steps:
+      # - checkout
+      # - setup_remote_docker
+      # - heroku/install
+      # - run:
+          # name: Heroku
+          # command: |
+            # echo $DSN_SENTRY
+            # curl https://cli-assets.heroku.com/install.sh | sh
+            # HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+            # HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY -a $HEROKU_APP_NAME
+            # HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DSN_SENTRY=$DSN_SENTRY -a $HEROKU_APP_NAME
+            # HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
+            # HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
 
 workflows:
   version: 2
@@ -67,7 +77,12 @@ workflows:
               only: main
           requires:
             - run-test
-      - heroku/deploy-via-git
+      - deploye-from-dockerhub-to-heroku:
+          filters:
+            branches:
+              only: main
+          requires:
+            - build-push-docker
       # - deploye-on-heroku:
           # filters:
             # branches:

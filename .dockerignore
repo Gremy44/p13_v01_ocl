@@ -1,6 +1,5 @@
 # Exclure les fichiers de configuration locaux
 .env
-# *.sqlite3
 
 # Exclure les fichiers de logs
 *.log
@@ -34,9 +33,6 @@ docker-compose.yml
 
 .circleci/
 .pytest_cache/
-# Elastic Beanstalk Files
-
-.elasticbeanstalk/*
 
 .git
 

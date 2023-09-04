@@ -15,7 +15,7 @@ __pycache__/
 *.pyd
 node_modules/
 bower_components/
-
+docker-compose.yml
 # Exclure les fichiers de cache
 .cache/
 .cached/
@@ -34,3 +34,10 @@ bower_components/
 
 .circleci/
 .pytest_cache/
+# Elastic Beanstalk Files
+
+.elasticbeanstalk/*
+
+.git
+
+.gitignore

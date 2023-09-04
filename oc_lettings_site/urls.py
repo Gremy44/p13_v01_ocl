@@ -3,6 +3,7 @@ from django.urls import path, include
 
 from .views import index, trigger_error
 
+
 urlpatterns = [
     path('', index, name='index'),
     path('lettings/', include('lettings.urls')),

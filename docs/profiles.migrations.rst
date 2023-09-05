@@ -2,7 +2,7 @@ profiles.migrations
 ===================
 
 Submodules
-==========
+----------
 
 profiles.migrations.0001\_initial
 ---------------------------------

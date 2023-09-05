@@ -10,7 +10,7 @@ Subpackages
    profiles.migrations
 
 Submodules
-==========
+----------
 
 profiles.models
 ---------------

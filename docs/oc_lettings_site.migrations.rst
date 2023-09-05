@@ -2,7 +2,7 @@ oc\_lettings\_site.migrations
 =============================
 
 Submodules
-==========
+----------
 
 oc\_lettings\_site.migrations.0001\_initial
 -------------------------------------------

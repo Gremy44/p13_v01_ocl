@@ -10,7 +10,7 @@ Subpackages
    lettings.migrations
 
 Submodules
-==========
+----------
 
 lettings.models
 ---------------

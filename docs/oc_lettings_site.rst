@@ -10,7 +10,7 @@ Subpackages
    oc_lettings_site.migrations
 
 Submodules
-==========
+----------
 
 oc\_lettings\_site.logger
 -------------------------

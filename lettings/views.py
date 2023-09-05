@@ -6,13 +6,16 @@ from oc_lettings_site.logger import capture_sentry_message
 @capture_sentry_message
 def index(request):
     """
-    Renders the lettings index page.
+    Render the lettings index page.
 
-    Parameters:
-    - request: The HTTP request object.
+    This view function renders the index page for lettings,
+    displaying a list of all available lettings.
 
-    Returns:
-    - Rendered HTML response for the lettings index page displaying a list of lettings.
+    :param request: The HTTP request object.
+    :type request: HttpRequest
+
+    :return: Rendered HTML response for the lettings index page displaying a list of lettings.
+    :rtype: HttpResponse
     """
     lettings_list = Letting.objects.all()
     context = {"lettings_list": lettings_list}
@@ -22,14 +25,17 @@ def index(request):
 @capture_sentry_message
 def letting(request, letting_id):
     """
-    Renders the details page for a specific letting.
+    Render the details page for a specific letting.
 
-    Parameters:
-    - request: The HTTP request object.
-    - letting_id: The ID of the letting to be displayed.
+    This view function renders the details page for a specific letting, identified by its ID.
 
-    Returns:
-    - Rendered HTML response for the letting details page.
+    :param request: The HTTP request object.
+    :type request: HttpRequest
+    :param letting_id: The ID of the letting to be displayed.
+    :type letting_id: int
+
+    :return: Rendered HTML response for the letting details page.
+    :rtype: HttpResponse
     """
     letting = Letting.objects.get(id=letting_id)
     context = {

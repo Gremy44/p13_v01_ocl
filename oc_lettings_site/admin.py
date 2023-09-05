@@ -14,7 +14,7 @@ def capture_admin_login(sender, request, user, **kwargs):
         sender: The sender of the signal.
         request: The request object associated with the login event.
         user: The user who logged in.
-        **kwargs: Additional keyword arguments provided by the signal.
+        kwargs: Additional keyword arguments provided by the signal.
 
     Returns:
         None

@@ -63,6 +63,7 @@ def error_view(request):
     """
     return HttpResponse('Simulate internal server error', status=500)
 
+
 def trigger_error(request):
     """
     test error 500

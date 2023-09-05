@@ -1,5 +1,5 @@
-oc\_lettings\_site package
-==========================
+oc\_lettings\_site
+==================
 
 Subpackages
 -----------
@@ -12,50 +12,18 @@ Subpackages
 Submodules
 ----------
 
-oc\_lettings\_site.admin module
--------------------------------
-
-.. automodule:: oc_lettings_site.admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-oc\_lettings\_site.logger module
---------------------------------
+oc\_lettings\_site.logger
+-------------------------
 
 .. automodule:: oc_lettings_site.logger
    :members:
    :undoc-members:
    :show-inheritance:
 
-oc\_lettings\_site.tests module
--------------------------------
-
-.. automodule:: oc_lettings_site.tests
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-oc\_lettings\_site.urls module
-------------------------------
-
-.. automodule:: oc_lettings_site.urls
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-oc\_lettings\_site.views module
--------------------------------
+oc\_lettings\_site.views
+------------------------
 
 .. automodule:: oc_lettings_site.views
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-oc\_lettings\_site.wsgi module
-------------------------------
-
-.. automodule:: oc_lettings_site.wsgi
    :members:
    :undoc-members:
    :show-inheritance:

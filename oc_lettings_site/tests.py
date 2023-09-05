@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_dummy():
     """
     A dummy test to ensure the test setup is working.
@@ -61,5 +62,5 @@ def test_internal_server_error(client):
     None
     """
     # raise Exception("500 error test")
-    response = client.get('/error500/')
+    response = client.get("/error500/")
     assert response.status_code == 500

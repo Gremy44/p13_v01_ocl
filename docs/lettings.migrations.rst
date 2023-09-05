@@ -2,7 +2,7 @@ lettings.migrations
 ===================
 
 Submodules
-----------
+==========
 
 lettings.migrations.0001\_initial
 ---------------------------------

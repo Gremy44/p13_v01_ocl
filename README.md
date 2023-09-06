@@ -76,7 +76,30 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
+## Deploiement
+
+#### Stack utilisée :
+- Django 
+- Github
+- Circle CI 
+- Docker
+- Heroku
+- Sentry
+
+Pour le CI/CD à chaque push sur la branch main de Github, Circleci effectue ses tests et crée une image Docker du projet qu'il poussera sur Heroku.
+
+### Docker
+
+Pour créer votre image docker suivez les étapes suivantes : 
+- Veillez à bien avoir installer les dépendances du projet avec : `pip install -r requirements.txt`
+- Installer DockerDesktop à partir du site de Docker : `https://www.docker.com/products/docker-desktop/`
+- Une fois DockerDesktop démarrer sur votre machine, créer votre image avec la commande suivante : `docker build -t <nom-de-votre-image>:<version-de-votre-image> .`
 ### Journalisation avec Sentry
 
 Pour connecter Sentry à l'application veuillez ajouter dans votre fichier .env une nouvelle variable d'environnement nommée:
- - `DSN_SENTRY = "Votre-Clef-Dsn"` fournie par Sentry au moment de la création du projet sur le site 
+ - `DSN_SENTRY = "Votre-Clef-Dsn"` fournie par Sentry au moment de la création du projet sur le site
+
+
+### Circle ci
+
+### Deploiement sur Heroku

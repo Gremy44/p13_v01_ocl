@@ -13,7 +13,7 @@ ARG DEBUG
 ARG DSN_SENTRY
 
 # copy project
-COPY . .
+COPY . /home/app/
 
 #install dependencies
 RUN pip install -r requirements.txt --no-cache-dir 

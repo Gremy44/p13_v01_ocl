@@ -139,6 +139,12 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # statiques avec la commande d’administration collectstatic.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 # Sentry configuration
 sentry_sdk.init(
     # dsn=env("DSN_SENTRY"),

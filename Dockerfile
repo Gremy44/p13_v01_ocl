@@ -20,7 +20,7 @@ ARG DEBUG
 WORKDIR $DockerHOME
 
 # copy project
-COPY . $DockerHOME
+COPY . $DockerHOME/
 
 # install dependencies
 RUN \

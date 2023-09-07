@@ -18,8 +18,7 @@ COPY . .
 #install dependencies
 RUN pip install -r requirements.txt --no-cache-dir 
 
-# RUN python manage.py collectstatic --noinput
-
+EXPOSE 8000
 # start server  
-CMD python manage.py runserver 0.0.0.0:$PORT
 
+CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "oc_lettings_site.wsgi"]

@@ -80,7 +80,12 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 Une documentation en ligne est présente sur readthedoc à l'adresse suivante :
 https://p13-v01-ocl.readthedocs.io/en/latest/modules.html
+> En plus des exemples vous aurez accès au code source en cliquant sur la petite chaine verte avec écrit 'code'.
+
+> L'update de la documentation est automatique grâce à un webhook de readthedoc sur le repo github.
+
 > La gestion de cette documentation se fait dans le dossier **`.docs`**
+
 
 ## Deploiement
 

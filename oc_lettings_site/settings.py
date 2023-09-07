@@ -30,7 +30,7 @@ DEBUG = False
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://git.heroku.com/ocl-gremy.git']
 ALLOWED_HOSTS = ["*"]
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 # Application definition
 

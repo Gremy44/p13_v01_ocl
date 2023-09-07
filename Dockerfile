@@ -20,7 +20,7 @@ ARG DEBUG
     # mkdir -p $DockerHOME/web/staticfiles
 
 # where your code lives
-
+COPY ./requirements.txt .
 # install dependencies
 RUN pip install -r requirements.txt --no-cache-dir
 

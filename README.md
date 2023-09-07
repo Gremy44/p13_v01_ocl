@@ -78,7 +78,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ## Deploiement
 
-#### Stack utilisée :
+### Stack utilisée :
 - Django 
 - Github
 - Circle CI 
@@ -88,14 +88,18 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 > Pour le CI/CD à chaque push sur la branch main de Github, Circleci effectue ses tests et crée une image Docker du projet qu'il poussera sur Heroku.
 
+Pour démarrer vous allez créer un fichier .env à la racine du projet. A l'interieur ajouter les variables d'environnement : 
+- **DJANGO_SECRET_KEY** : votre clef secrète dans Django 
+- **DSN_SENTRY** : On génèrera la DSN un peu plus bas 
+- **DEBUG** : 0 si production, 1 si développement
 
-## Parametrer la stack pour le déploiement
-### Docker
+### Parametrer la stack pour le déploiement
+#### Docker
 
 Pour utiliser Docker : 
 - Créez vous un compte sur le site de docker pour pouvoir utiliser le dockerHub
 - Téléchargez et installez l'application DockerDesktop
-Le projet à un fichier Dockerfile qui construit une image simple de notre application. C'est l'image créé par notre fichier Dockerfile qu'on va utilisée pour le deploiement.
+>Le fichier utilisé pour créer l'image docker est le fichier 'Dockerfile' présent a la racine du projet. Il vient un fichier Dockerignore qui sert à exclure des fichiers ou dossier de l'image que l'on souhaite créer.
 
 Pour créer votre image docker suivez les étapes suivantes : 
 - Veillez à bien avoir installer les dépendances du projet avec : `pip install -r requirements.txt`
@@ -104,7 +108,7 @@ Pour créer votre image docker suivez les étapes suivantes :
 - Ensuite, démarrez votre image Docker avec cette commande : `docker run -p 8000:8000 --env-file .env <nom-de-votre-image>`
 - Vous pourrez accéder à votre image à l'URL suivante : `localhost:8000` ou `127.0.0.1:8000`
 
-### Journalisation avec Sentry
+#### Journalisation avec Sentry
 
 Sentry va nous servir popur la journalisation et le suivi de notre application. Pour l'utiliser :
 - allez sur le site de `sentry.io`
@@ -114,7 +118,11 @@ Sentry va nous servir popur la journalisation et le suivi de notre application. 
 - dans votre projet installer la librairie de sentry
 - Ajouter votre clef DSN avec le nom DSN_SENTRY dans votre fichier .env
 
-### Deploiement sur Heroku
+>Dans le projet, un script **`logger.py`** est présent dans le dossier os_lettings_site. il contient un décorateur qui est utilisé sur les fonctions du projet pour surveiller le trajet de l'utilisateur sur le site.
+
+>La journalisation remonte aussi les erreur 404, 405 et quand un utilisateur se logg dans l'espace d'administration de l'app
+
+#### Deploiement sur Heroku
 
 - Pour utiliser les services de Heroku vous devrez créer un compte.
 - Une fois fait, rendez-vous sur votre page personnelle pour créer une nouvelle app en cliquant sur le bouton **new**.
@@ -124,20 +132,28 @@ Sentry va nous servir popur la journalisation et le suivi de notre application. 
   + DSN_SENTRY
   + DEBUG
 - Vérifier que votre nom d'application est correcte.
-
+> le deploiement sur Heroku est géré avec le fichier **`heroku.yml`** à la racine du projet
 ### Circle CI
-Pour faire fonctionner tout le pipeline de deploiement continue, nous utiliserons l'app wep de Circleci. Pour l'utiliser vous devrez créer un compte sur le site de Circleci, lier votre repo Github et parametrer les variables d'environnement de l'application
+Pour faire fonctionner tout le pipeline de deploiement continue, nous utiliserons l'app wep de Circleci. Pour l'utiliser vous devrez créer un compte sur le site de Circleci, lier votre repo Github et parametrer les variables d'environnement de l'application.
+> Dans votre projet, le fichier qui pilote les tâches effectuées par Circleci se trouve dans le dossier .circleci et c'est le fichier **`config.yml`**
 
 Variables d'environnement :
 | NOM DE LA VARIABLE | VALEUR |
 |:-------------------:|:-------|
-|DJANGO_SECRET_KEY | Votre clef secrète Django
-|DSN_SENTRY| Votre Dsn Sentry
-|DEBUG|Valeur 0 ou 1 pour la production ou le developpement
-|DOCKER_HUB_USERNAME| Votre nom d'utilisateur Docker
-|DOCKER_HUB_PASSWORD| Votre mot de passe Docker
-|IMAGE_NAME| Le nom de votre image Docker
-|HEROKU_API_KEY| Votre clef API Heroku
-|HEROKU_APP_NAME| Le nom de votre application sur Heroku
+|DJANGO_SECRET_KEY | *Votre clef secrète Django*
+|DSN_SENTRY| *Votre Dsn Sentry*
+|DEBUG|*Valeur 0 ou 1 pour la production ou le developpement*
+|DOCKER_HUB_USERNAME| *Votre nom d'utilisateur Docker*
+|DOCKER_HUB_PASSWORD| *Votre mot de passe Docker*
+|IMAGE_NAME| *Le nom de votre image Docker*
+|HEROKU_API_KEY| *Votre clef API Heroku*
+|HEROKU_APP_NAME| *Le nom de votre application sur Heroku*
 
-Une fois fait nous allons parametrer Heroku pour deployer notre application.
+### Github
+Une fois toute ces étapes faites, créer votre premier commit que vous allez push sur votre branch 'main' sur Github. Une fois le push effectué, Circleci va démarrer l'automotaisation:
+- il va effectuer tous les tests.
+- il va créer une image de votre projet et la push sur le Dockerhub avec en tag un hash généré par Cricleci ( variable $CIRCLE_SHA1).
+- depuis le DockerHub il va récupérer votre dernière image et la déployer sur Heroku.
+- une fois déployée, le suivi de votre application se fera avec Sentry.
+
+

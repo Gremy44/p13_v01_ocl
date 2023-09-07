@@ -3,16 +3,17 @@ FROM python:3.10
 # setup environment variable  
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DockerHOME=/home/app 
-ENV DJANGO_SECRET_KEY $DJANGO_SECRET_KEY
-ENV DEBUG $DEBUG
-ENV DSN_SENTRY $DSN_SENTRY
+ENV DockerHOME=/home/app
 ENV PORT 8000
+ARG DJANGO_SECRET_KEY
+ARG DSN_SENTRY
+ARG DEBUG
+
 
 # set work directory
-RUN \
-    mkdir -p $DockerHOME && \
-    mkdir -p $DockerHOME/web/staticfiles
+# RUN \
+    # mkdir -p $DockerHOME && \
+    # mkdir -p $DockerHOME/web/staticfiles
 
 # where your code lives
 WORKDIR $DockerHOME
@@ -23,7 +24,7 @@ COPY . $DockerHOME
 # install dependencies
 RUN \
     pip install --upgrade pip && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt --no-cache-dir
 
 # RUN python manage.py collectstatic --noinput
 

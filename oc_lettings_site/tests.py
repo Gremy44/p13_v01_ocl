@@ -50,7 +50,6 @@ def test_return_404_for_invalid_request(client):
     assert response.status_code == 404
 
 
-@pytest.mark.xfail(raises=Exception)
 def test_internal_server_error(client):
     """
     Test internal server error on a URL that raises an exception.
@@ -62,5 +61,5 @@ def test_internal_server_error(client):
     None
     """
     # raise Exception("500 error test")
-    response = client.get("/error500/")
+    response = client.get("/lettings/1500/")
     assert response.status_code == 500

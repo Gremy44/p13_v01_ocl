@@ -76,6 +76,12 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
+### Documentation
+
+Une documentation en ligne est présente sur readthedoc à l'adresse suivante :
+https://p13-v01-ocl.readthedocs.io/en/latest/modules.html
+> La gestion de cette documentation se fait dans le dossier **`.docs`**
+
 ## Deploiement
 
 ### Stack utilisée :
@@ -155,5 +161,3 @@ Une fois toute ces étapes faites, créer votre premier commit que vous allez pu
 - il va créer une image de votre projet et la push sur le Dockerhub avec en tag un hash généré par Cricleci ( variable $CIRCLE_SHA1).
 - depuis le DockerHub il va récupérer votre dernière image et la déployer sur Heroku.
 - une fois déployée, le suivi de votre application se fera avec Sentry.
-
-

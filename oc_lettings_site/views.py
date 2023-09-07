@@ -62,10 +62,3 @@ def error_view(request):
         HttpResponse: A response indicating an internal server error with a status code of 500.
     """
     return HttpResponse('Simulate internal server error', status=500)
-
-
-def trigger_error(request):
-    """
-    test error 500
-    """
-    division_by_zero = 1 / 0

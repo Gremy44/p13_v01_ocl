@@ -25,12 +25,12 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://stackoverflow.com/questions/5836674/why-does-debug-false-setting-make-my-django-static-files-access-fail
 
 # DEBUG = env("DEBUG")
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://git.heroku.com/ocl-gremy.git']
 ALLOWED_HOSTS = ["*"]
 
-APPEND_SLASH = True
+APPEND_SLASH = False
 
 # Application definition
 

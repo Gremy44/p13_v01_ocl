@@ -86,12 +86,16 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Heroku
 - Sentry
 
-Pour le CI/CD à chaque push sur la branch main de Github, Circleci effectue ses tests et crée une image Docker du projet qu'il poussera sur Heroku.
+> Pour le CI/CD à chaque push sur la branch main de Github, Circleci effectue ses tests et crée une image Docker du projet qu'il poussera sur Heroku.
 
-### Circle CI
-Pour faire fonctionner tout le pipeline de deploiement continue, nous utiliserons Circleci. 
 
+## Parametrer la stack pour le déploiement
 ### Docker
+
+Pour utiliser Docker : 
+- Créez vous un compte sur le site de docker pour pouvoir utiliser le dockerHub
+- Téléchargez et installez l'application DockerDesktop
+Le projet à un fichier Dockerfile qui construit une image simple de notre application. C'est l'image créé par notre fichier Dockerfile qu'on va utilisée pour le deploiement.
 
 Pour créer votre image docker suivez les étapes suivantes : 
 - Veillez à bien avoir installer les dépendances du projet avec : `pip install -r requirements.txt`
@@ -99,12 +103,41 @@ Pour créer votre image docker suivez les étapes suivantes :
 - Une fois DockerDesktop démarrer sur votre machine, créer votre image avec la commande suivante : `docker build -t <nom-de-votre-image>:<version-de-votre-image> .`
 - Ensuite, démarrez votre image Docker avec cette commande : `docker run -p 8000:8000 --env-file .env <nom-de-votre-image>`
 - Vous pourrez accéder à votre image à l'URL suivante : `localhost:8000` ou `127.0.0.1:8000`
+
 ### Journalisation avec Sentry
 
-Pour connecter Sentry à l'application veuillez ajouter dans votre fichier .env une nouvelle variable d'environnement nommée:
- - `DSN_SENTRY = "Votre-Clef-Dsn"` fournie par Sentry au moment de la création du projet sur le site
-
-
-### Circle ci
+Sentry va nous servir popur la journalisation et le suivi de notre application. Pour l'utiliser :
+- allez sur le site de `sentry.io`
+- créer vous un compte 
+- créer un nouveau projet à partir de votre dashboard qu'on va ensuite lier à notre projet
+- générez votre clef DSN
+- dans votre projet installer la librairie de sentry
+- Ajouter votre clef DSN avec le nom DSN_SENTRY dans votre fichier .env
 
 ### Deploiement sur Heroku
+
+- Pour utiliser les services de Heroku vous devrez créer un compte.
+- Une fois fait, rendez-vous sur votre page personnelle pour créer une nouvelle app en cliquant sur le bouton **new**.
+- Renseigner les champs qui vous sont demandés.
+- Rendez-vous ensuite dans les settings de votre application pour y entrer les variables d'environnement de votre application. Ici vous devrait entrer les variables : 
+  + DJANGO_SECRET_KEY
+  + DSN_SENTRY
+  + DEBUG
+- Vérifier que votre nom d'application est correcte.
+
+### Circle CI
+Pour faire fonctionner tout le pipeline de deploiement continue, nous utiliserons l'app wep de Circleci. Pour l'utiliser vous devrez créer un compte sur le site de Circleci, lier votre repo Github et parametrer les variables d'environnement de l'application
+
+Variables d'environnement :
+| NOM DE LA VARIABLE | VALEUR |
+|:-------------------:|:-------|
+|DJANGO_SECRET_KEY | Votre clef secrète Django
+|DSN_SENTRY| Votre Dsn Sentry
+|DEBUG|Valeur 0 ou 1 pour la production ou le developpement
+|DOCKER_HUB_USERNAME| Votre nom d'utilisateur Docker
+|DOCKER_HUB_PASSWORD| Votre mot de passe Docker
+|IMAGE_NAME| Le nom de votre image Docker
+|HEROKU_API_KEY| Votre clef API Heroku
+|HEROKU_APP_NAME| Le nom de votre application sur Heroku
+
+Une fois fait nous allons parametrer Heroku pour deployer notre application.

@@ -24,9 +24,8 @@ COPY . $DockerHOME
 # install dependencies
 RUN \
     pip install --upgrade pip && \
-    pip install -r requirements.txt --no-cache-dir
-
-RUN python manage.py collectstatic --noinput
+    pip install -r requirements.txt --no-cache-dir &&\
+    python manage.py collectstatic --noinput
 
 # start server  
 CMD python manage.py runserver 0.0.0.0:$PORT

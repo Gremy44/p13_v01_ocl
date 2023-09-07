@@ -25,7 +25,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://stackoverflow.com/questions/5836674/why-does-debug-false-setting-make-my-django-static-files-access-fail
 
 # DEBUG = env("DEBUG")
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://git.heroku.com/ocl-gremy.git']
 ALLOWED_HOSTS = ["*"]
@@ -125,11 +125,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# Le chemin absolu vers le répertoire dans lequel collectstatic rassemble
+# les fichiers statiques en vue du déploiement.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# URL utilisée pour se référer aux fichiers statiques se trouvant dans STATIC_ROOT.
 STATIC_URL = '/static/'
+# indique à Django où trouver les autres fichiers statiques
+# (en debug=true, sers les fichiers statics)
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+# Le moteur de stockage de fichiers à utiliser lors de la collecte des fichiers 
+# statiques avec la commande d’administration collectstatic.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Sentry configuration

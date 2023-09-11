@@ -11,11 +11,3 @@ profiles.migrations.0001\_initial
    :members:
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: profiles.migrations
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,7 +1,7 @@
 URL Configuration
 =================
 
-.. module:: profiles.urls
+.. module:: Urls
 
 URL Patterns
 ------------

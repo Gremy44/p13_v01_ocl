@@ -1,8 +1,6 @@
 URL Configuration
 =================
 
-.. module:: lettings.urls
-
 URL Patterns
 ------------
 

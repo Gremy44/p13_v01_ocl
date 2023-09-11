@@ -1,5 +1,5 @@
-p13_v01_ocl
-===========
+Documentation sur le code
+=========================
 
 .. toctree::
    :maxdepth: 2
@@ -8,7 +8,7 @@ Lettings
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    lettings
    lettings.migrations
@@ -18,7 +18,7 @@ Profiles
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    profiles
    profiles.migrations
@@ -28,7 +28,7 @@ OC Lettings Site
 ----------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    oc_lettings_site
    oc_lettings_site.migrations

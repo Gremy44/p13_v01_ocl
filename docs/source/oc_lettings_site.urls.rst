@@ -1,7 +1,7 @@
 URL Configuration
 =================
 
-.. module:: oc_lettings_site.urls
+.. module:: Urls
 
 URL Patterns
 ------------

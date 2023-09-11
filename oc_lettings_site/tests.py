@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_dummy():
     """
     A dummy test to ensure the test setup is working.

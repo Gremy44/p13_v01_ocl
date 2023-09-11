@@ -135,7 +135,7 @@ STATICFILES_DIRS = (
 # Le chemin absolu vers le répertoire dans lequel collectstatic rassemble
 # les fichiers statiques en vue du déploiement.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-# Le moteur de stockage de fichiers à utiliser lors de la collecte des fichiers 
+# Le moteur de stockage de fichiers à utiliser lors de la collecte des fichiers
 # statiques avec la commande d’administration collectstatic.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 

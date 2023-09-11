@@ -27,11 +27,3 @@ oc\_lettings\_site.migrations.0003\_auto\_20230808\_0744
    :members:
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: oc_lettings_site.migrations
-   :members:
-   :undoc-members:
-   :show-inheritance:

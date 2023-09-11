@@ -6,18 +6,6 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import pathlib
-import sys
-import os
-import django
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
-sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
-sys.path.insert(1, "/oc_lettings_site/")
-sys.path.insert(1, "/lettings/")
-
-# Setup Django
-django.setup()
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -30,7 +18,7 @@ extensions = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = []
 
 
 # -- Options for HTML output -------------------------------------------------

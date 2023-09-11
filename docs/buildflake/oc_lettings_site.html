@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.3.1. oc_lettings_site &mdash; Python  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7.3.2. oc_lettings_site.migrations" href="oc_lettings_site.migrations.html" />
+    <link rel="prev" title="7.2.3. URL Configuration" href="profiles.urls.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composition.html">2. Composition du Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demarrage.html">4. Demarrage rapide en local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilisation.html">5. Utilisation pour deploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">6. Tester le code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">7. Documentation sur le code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html#lettings">7.1. Lettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#profiles">7.2. Profiles</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html#oc-lettings-site">7.3. OC Lettings Site</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">7.3.1. oc_lettings_site</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-oc_lettings_site.logger">7.3.1.1. oc_lettings_site.logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-oc_lettings_site.views">7.3.1.2. oc_lettings_site.views</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="oc_lettings_site.migrations.html">7.3.2. oc_lettings_site.migrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oc_lettings_site.urls.html">7.3.3. URL Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html"><span class="section-number">7. </span>Documentation sur le code</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7.3.1. </span>oc_lettings_site</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/oc_lettings_site.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="oc-lettings-site">
+<h1><span class="section-number">7.3.1. </span>oc_lettings_site<a class="headerlink" href="#oc-lettings-site" title="Link to this heading"></a></h1>
+<section id="module-oc_lettings_site.logger">
+<span id="oc-lettings-site-logger"></span><h2><span class="section-number">7.3.1.1. </span>oc_lettings_site.logger<a class="headerlink" href="#module-oc_lettings_site.logger" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.logger.capture_sentry_message">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.logger.</span></span><span class="sig-name descname"><span class="pre">capture_sentry_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/logger.html#capture_sentry_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.logger.capture_sentry_message" title="Link to this definition"></a></dt>
+<dd><p>A decorator to capture user visits and exceptions using Sentry.</p>
+<p>This decorator wraps a view function and captures a
+message when the view is visited by a user.
+If an exception occurs during the view’s execution,
+the exception is captured and reported to Sentry.</p>
+<dl>
+<dt>Args:</dt><dd><p>view_func (function): The original view function to be wrapped.</p>
+</dd>
+<dt>Returns:</dt><dd><p>function: The wrapped view function with added Sentry message capturing.</p>
+</dd>
+<dt>Example:</dt><dd><p>&#64;capture_sentry_message
+def my_view(request):</p>
+<blockquote>
+<div><p># View logic
+…</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-oc_lettings_site.views">
+<span id="oc-lettings-site-views"></span><h2><span class="section-number">7.3.1.2. </span>oc_lettings_site.views<a class="headerlink" href="#module-oc_lettings_site.views" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.views.error_404_view">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">error_404_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/views.html#error_404_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.views.error_404_view" title="Link to this definition"></a></dt>
+<dd><p>Renders the custom 404 page, page not found.</p>
+<p>Parameters:
+- request: The HTTP request object.
+- exception: The exception that triggered the 404 error.</p>
+<p>Returns:
+- Rendered HTML response for the custom 404 page.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.views.error_500_view">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">error_500_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/views.html#error_500_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.views.error_500_view" title="Link to this definition"></a></dt>
+<dd><p>Renders the custom 500 page, error server.</p>
+<p>Parameters:
+- request: The HTTP request object.
+- exception: The exception that triggered the 500 error.</p>
+<p>Returns:
+- Rendered HTML response for the custom 500 page.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.views.error_view">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">error_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/views.html#error_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.views.error_view" title="Link to this definition"></a></dt>
+<dd><p>This view simulates an internal server error by raising
+an exception and returns an appropriate response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (HttpRequest): The incoming HTTP request object.</p>
+</dd>
+<dt>Returns:</dt><dd><p>HttpResponse: A response indicating an internal server error with a status code of 500.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.views.index">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/views.html#index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.views.index" title="Link to this definition"></a></dt>
+<dd><p>Renders the index page.</p>
+<p>Parameters:
+- request: The HTTP request object.</p>
+<p>Returns:
+- Rendered HTML response for the index page.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="profiles.urls.html" class="btn btn-neutral float-left" title="7.2.3. URL Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="oc_lettings_site.migrations.html" class="btn btn-neutral float-right" title="7.3.2. oc_lettings_site.migrations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

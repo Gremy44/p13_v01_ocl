@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. Utilisation pour deploiement &mdash; Python  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Tester le code" href="tests.html" />
+    <link rel="prev" title="4. Demarrage rapide en local" href="demarrage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composition.html">2. Composition du Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demarrage.html">4. Demarrage rapide en local</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Utilisation pour deploiement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-docker-docker-logo">5.1. Utilisation de Docker </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-de-docker">5.1.1. 1. Installation  de Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creation-et-push-de-l-image-vers-votre-depot-docker">5.1.2. 2. Création et push de l’image vers votre dépôt Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tester-le-fonctionnement-de-l-image">5.1.3. 3. Tester le fonctionnement de l’image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gestion-est-creation-des-utilisateurs-avec-django-django-logo">5.2. Gestion est création des utilisateurs avec Django </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#administration-des-utilisateurs">5.2.1. 1. Administration des utilisateurs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-sentry-sentry-logo">5.3. Utilisation de Sentry </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-de-sentry">5.3.1. 1. Configuration de Sentry</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-circleci">5.4. Utilisation de Circleci</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-de-circleci">5.4.1. Configuration de Circleci</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-heroku">5.5. Utilisation de Heroku</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">6. Tester le code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">7. Documentation sur le code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>Utilisation pour deploiement</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utilisation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utilisation-pour-deploiement">
+<h1><span class="section-number">5. </span>Utilisation pour deploiement<a class="headerlink" href="#utilisation-pour-deploiement" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>Vous trouverez ici les différentes étapes pour configurer l’application et les services tiers pour faire fonctionner correctement le projet en vue de le déployer.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pour que les étapes de ce chapitre fonctionnent, vous devez au préalable avoir exécuté les étapes du chapitre : <strong>demarrage</strong>.</p>
+</div>
+<section id="utilisation-de-docker-docker-logo">
+<h2><span class="section-number">5.1. </span>Utilisation de Docker <a class="reference internal" href="_images/docker.svg"><img alt="Docker Logo" src="_images/docker.svg" width="20px" /></a><a class="headerlink" href="#utilisation-de-docker-docker-logo" title="Link to this heading"></a></h2>
+<section id="installation-de-docker">
+<h3><span class="section-number">5.1.1. </span>1. Installation  de Docker<a class="headerlink" href="#installation-de-docker" title="Link to this heading"></a></h3>
+<p>Pour utiliser Docker Hub, il est nécessaire de créer un compte et d’installer Docker sur son ordinateur: <a class="reference external" href="https://www.docker.com/">Docker</a></p>
+<p>Une fois le compte créé et docker installer sur votre ordinateur, vous pourrez envoyer des images sur votre dépôt Docker Hub</p>
+<p>Créer un dépôt et donner lui le nom que vous souhaitez.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Le dépôt créé doit être public.</p>
+</div>
+<p>Pour push une image sur votre dépôt Docker, vous devez utiliser un fichier <em>Dockerfile</em>, comme celui-ci présent dans le projet.
+Vous pouvez en créer un ou utiliser celui existant et le modifier selon vos besoins.</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># base image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10</span>
+
+<span class="c"># setup work directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/home/app</span>
+
+<span class="c"># setup environment variable</span>
+<span class="k">ENV</span><span class="w"> </span>PYTHONDONTWRITEBYTECODE<span class="w"> </span><span class="m">1</span>
+<span class="k">ENV</span><span class="w"> </span>PYTHONUNBUFFERED<span class="w"> </span><span class="m">1</span>
+
+<span class="k">ARG</span><span class="w"> </span>DJANGO_SECRET_KEY
+<span class="k">ARG</span><span class="w"> </span>DEBUG
+<span class="k">ARG</span><span class="w"> </span>DSN_SENTRY
+
+<span class="c"># copy project</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="c">#install dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--no-cache-dir
+
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+<span class="c"># start server</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;gunicorn&quot;</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:8000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;oc_lettings_site.wsgi&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="creation-et-push-de-l-image-vers-votre-depot-docker">
+<h3><span class="section-number">5.1.2. </span>2. Création et push de l’image vers votre dépôt Docker<a class="headerlink" href="#creation-et-push-de-l-image-vers-votre-depot-docker" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construction de l&#39;image</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>ocl-docker:latest<span class="w"> </span>.
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Push de l&#39;image sur votre dépôt Docker</span>
+docker<span class="w"> </span>push<span class="w"> </span>&lt;votre_repo_docker&gt;/ocl-docker:latest
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remplacer &lt;votre_repo_docker&gt; par le ‘Namespace’ et le ‘repository name’ choisis sur Docker Hub</p>
+</div>
+</section>
+<section id="tester-le-fonctionnement-de-l-image">
+<h3><span class="section-number">5.1.3. </span>3. Tester le fonctionnement de l’image<a class="headerlink" href="#tester-le-fonctionnement-de-l-image" title="Link to this heading"></a></h3>
+<p>Pour lancer l’image créée localement exécuter les étapes suivantes.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Si vous utilisez <em>Docker Desktop</em> n’oubliez pas de le lancer avant.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connexion à Docker</span>
+docker<span class="w"> </span>login
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lancement de l&#39;image en local</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>&lt;votre_repo_docker&gt;/ocl-docker:latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Si vous souhaitez naviguer dans le projet pour vérifier des dossiers ou des fichiers.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>&lt;votre_repo_docker&gt;/ocl-docker<span class="w"> </span>/bin/sh
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gestion-est-creation-des-utilisateurs-avec-django-django-logo">
+<h2><span class="section-number">5.2. </span>Gestion est création des utilisateurs avec Django <a class="reference internal" href="_images/django.svg"><img alt="Django Logo" src="_images/django.svg" width="20px" /></a><a class="headerlink" href="#gestion-est-creation-des-utilisateurs-avec-django-django-logo" title="Link to this heading"></a></h2>
+<section id="administration-des-utilisateurs">
+<h3><span class="section-number">5.2.1. </span>1. Administration des utilisateurs<a class="headerlink" href="#administration-des-utilisateurs" title="Link to this heading"></a></h3>
+<p>Pour créer et gérer des utilisateurs, cela peut être fait de plusieurs manières par le shell Django ou par l’interface d’administration de Django.
+Qui est accessible à l’adresse. (<a class="reference external" href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>nom d’utilisateur : admin</p></li>
+<li><p>mots de passe : Abc1234!</p></li>
+</ul>
+</div>
+<p>Une fois connecter, vous pourrez administrer les utilisateurs et les objets <em>Lettings</em> et <em>Addresses</em>.</p>
+</section>
+</section>
+<section id="utilisation-de-sentry-sentry-logo">
+<h2><span class="section-number">5.3. </span>Utilisation de Sentry <a class="reference internal" href="_images/sentry.svg"><img alt="Sentry Logo" src="_images/sentry.svg" width="20px" /></a><a class="headerlink" href="#utilisation-de-sentry-sentry-logo" title="Link to this heading"></a></h2>
+<section id="configuration-de-sentry">
+<h3><span class="section-number">5.3.1. </span>1. Configuration de Sentry<a class="headerlink" href="#configuration-de-sentry" title="Link to this heading"></a></h3>
+<p>Pour utiliser Sentry et pouvoir utiliser le monitoring sur le projet accédé à votre compte.</p>
+<ol class="arabic simple">
+<li><p>Créer un nouveau projet</p></li>
+<li><p>Choisissez une plateforme pour le projet, dans notre cas Django.</p></li>
+<li><p>Choisissez une équipe pour votre projet ensuite cliquer sur : <strong>Créer un projet</strong></p></li>
+<li><p>Une fois le projet créé, vous pourrez récupérer la clé <strong>SENTRY_DSN</strong> à intégrer dans le fichier <strong>.env</strong></p></li>
+</ol>
+<p>Une fois toutes ces étapes exécutées et le serveur local lancer, vous pourrez visualiser sur Sentry l’activité de l’application.</p>
+<dl class="simple">
+<dt>Sentry a été parametrer manuellement pour remonter plusieurs sorte d’informations :</dt><dd><ul class="simple">
+<li><p>La route des utilisateurs : label : <strong>info</strong></p></li>
+<li><p>Les erreurs 404 : label : <strong>warning</strong></p></li>
+<li><p>Les erreurs 500 : label : <strong>error</strong></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Dans l’application ‘oc_lettings_site’ se trouve un fichier <strong>logger.py</strong>, c’est un décorateur qui est placé sur chaque vue pour journaliser les parcour utilisateur sur le site.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour que Sentry fonctionne correctement, il faut que le fichier <strong>.env</strong> soit correctement configuré.</p>
+</div>
+</section>
+</section>
+<section id="utilisation-de-circleci">
+<h2><span class="section-number">5.4. </span>Utilisation de Circleci<a class="headerlink" href="#utilisation-de-circleci" title="Link to this heading"></a></h2>
+<p>Pour utiliser l’outil d’intégration continue Circle ci</p>
+<p>Circleci est un service d’intégration continue (CI) et de déploiement continu (CD). Il vous permet d’automatiser diverses tâches liées à votre projet, telles que les tests, les déploiements et plus encore. Dans ce chapitre, nous allons expliquer comment configurer et utiliser Circleci pour améliorer votre flux de travail de développement.</p>
+<section id="configuration-de-circleci">
+<h3><span class="section-number">5.4.1. </span>Configuration de Circleci<a class="headerlink" href="#configuration-de-circleci" title="Link to this heading"></a></h3>
+<p>Pour que le workflow de Circleci fonctionne il vous faudra vous rendre dans l’appli web Circleci. Connectez votre compte Github à Circleci et choisissez le repo de projet.
+Dans <strong>project setting</strong>, créez les variables d’environnements une à une.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Il faudra créer les secrets suivants :</p>
+<ul class="simple">
+<li><p>DJANGO_SECRET_KEY</p></li>
+<li><p>DOCKER_HUB_PASSWORD</p></li>
+<li><p>DOCKER_HUB_USERNAME</p></li>
+<li><p>HEROKU_API_KEY</p></li>
+<li><p>HEROKU_APP_NAME</p></li>
+<li><p>SENTRY_DSN</p></li>
+<li><p>IMAGE_NAME</p></li>
+<li><p>DEBUG</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Fichier de configuration yaml pour Circleci qui déclenche le workflow à chaque <cite>push</cite> ou <cite>pull request</cite> sur la branche main :</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.1</span>
+
+<span class="nt">orbs</span><span class="p">:</span>
+<span class="nt">docker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">circleci/docker@2.1.3</span>
+<span class="nt">python</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">circleci/python@2.0.3</span>
+<span class="nt">heroku</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">circleci/heroku@2.0.0</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="nt">run-test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">docker</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cimg/python:3.10.2</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">python/install-packages</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">pkg-manager</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">        </span><span class="nt">pip-dependency-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirements.txt</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest</span>
+
+<span class="nt">build-push-docker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">docker</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cimg/python:3.10.2</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setup_remote_docker</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build docker image</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connect to Docker Hub</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;$DOCKER_HUB_PASSWORD&quot; | docker login -u &quot;$DOCKER_HUB_USERNAME&quot; --password-stdin</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Push docker image</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">docker tag $IMAGE_NAME:$CIRCLE_SHA1 $DOCKER_HUB_USERNAME/$IMAGE_NAME:$CIRCLE_SHA1 |</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">docker push $DOCKER_HUB_USERNAME/$IMAGE_NAME:$CIRCLE_SHA1</span>
+
+<span class="nt">deploye-from-dockerhub-to-heroku</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">docker</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$DOCKER_HUB_USERNAME/$IMAGE_NAME:$CIRCLE_SHA1</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy Main to Heroku</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main</span>
+
+
+<span class="nt">workflows</span><span class="p">:</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="nt">run_tests_and_build_docker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-test</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">build-push-docker</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">filters</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="w">        </span><span class="nt">requires</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-test</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">deploye-from-dockerhub-to-heroku</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">filters</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+<span class="w">        </span><span class="nt">requires</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-push-docker</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Le fichier doit être nommé <strong>config.yml</strong> et placé dans un repertoire nommé <strong>.circleci</strong> à la racine du projet.</p>
+</div>
+</section>
+</section>
+<section id="utilisation-de-heroku">
+<h2><span class="section-number">5.5. </span>Utilisation de Heroku<a class="headerlink" href="#utilisation-de-heroku" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Suivez les étapes suivantes pour mettre en place le déploiement continu sur Heroku :</dt><dd><ul class="simple">
+<li><p>Pour utiliser les services de Heroku vous devrez créer un compte.</p></li>
+<li><p>Une fois fait, rendez-vous sur votre page personnelle pour créer une nouvelle app en cliquant sur le bouton <strong>new</strong>.</p></li>
+<li><p>Renseigner les champs qui vous sont demandés.</p></li>
+<li><dl class="simple">
+<dt>Rendez-vous ensuite dans les settings de votre application pour y entrer les variables d’environnement de votre application. Ici vous devrait entrer les variables :</dt><dd><ul>
+<li><p>DJANGO_SECRET_KEY</p></li>
+<li><p>DSN_SENTRY</p></li>
+<li><p>DEBUG</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Vérifier que votre nom d’application est correcte.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>le deploiement sur Heroku est géré avec le fichier <strong>`heroku.yml`</strong> à la racine du projet</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Si vous avez fait des modifications sur les fichiers statics et que ceux-ci vous conviennent, n’oubliez pas d’executer la commande suivante pour les collecter :
+.. code-block:: bash</p>
+<blockquote>
+<div><p>python manage.py collectstatic –noinput</p>
+</div></blockquote>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="demarrage.html" class="btn btn-neutral float-left" title="4. Demarrage rapide en local" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests.html" class="btn btn-neutral float-right" title="6. Tester le code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

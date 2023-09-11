@@ -8,10 +8,8 @@
 
 import os
 import sys
-import django
 
 sys.path.insert(0, os.path.abspath("../.."))
-django.setup()
 
 project = "orange-county-lettings"
 copyright = "2023, Gosselin Remy"

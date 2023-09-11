@@ -7,7 +7,7 @@ Bienvenue dans la documentation d'Orange County Lettings !
 ===========================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :numbered:
    :caption: Sommaire :
 

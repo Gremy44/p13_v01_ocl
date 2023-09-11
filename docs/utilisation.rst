@@ -5,9 +5,6 @@ Utilisation pour deploiement
 .. toctree::
    :maxdepth: 2
 
-Introduction
-++++++++++++
-
 .. |github-logo| image:: _static/github.svg
    :alt: GitHub Logo
    :width: 20px

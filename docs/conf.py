@@ -6,15 +6,18 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import os
+import pathlib
 import sys
+import os
+import django
 
-sys.path.insert(0, os.path.abspath("../.."))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
+sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
+sys.path.insert(1, "/oc_lettings_site/")
+sys.path.insert(1, "/lettings/")
 
-project = "orange-county-lettings"
-copyright = "2023, Gosselin Remy"
-author = "Gosselin Remy"
-release = "1.0.0"
+# Setup Django
+django.setup()
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

@@ -166,3 +166,7 @@ Une fois toute ces étapes faites, créer votre premier commit que vous allez pu
 - il va créer une image de votre projet et la push sur le Dockerhub avec en tag un hash généré par Cricleci ( variable $CIRCLE_SHA1).
 - depuis le DockerHub il va récupérer votre dernière image et la déployer sur Heroku.
 - une fois déployée, le suivi de votre application se fera avec Sentry.
+
+### Documentation 
+Vous pourrez retrouver la documentation complète du projet ainsi que les process de déploiement sur la page ReadTheDocs du projet à l'adresse suivante : 
+`https://p13-v01-ocl.readthedocs.io/en/latest/index.html`
